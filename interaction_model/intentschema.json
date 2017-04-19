@@ -1,0 +1,131 @@
+{
+  "intents": [
+    {
+      "name": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "FavouriteIntent",
+      "samples": [
+        "Update my favourite places."
+      ],
+      "slots": [
+        {
+          "name": "FavouriteCity",
+          "type": "AMAZON.GB_CITY",
+          "samples": [
+            "{FavouriteCity} ",
+            "My favourite city is {FavouriteCity} ."
+          ]
+        },
+        {
+          "name": "FavouriteRegion",
+          "type": "AMAZON.GB_REGION",
+          "samples": [
+            "My favourite region is {FavouriteRegion} .",
+            "{FavouriteRegion} ."
+          ]
+        }
+      ]
+    }
+  ],
+  "prompts": [
+    {
+      "id": "Confirm.Intent-FavouriteIntent",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Can you confirm that your favourite city is {FavouriteCity} and your favourite region is {FavouriteRegion} ?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-FavouriteIntent.IntentSlot-FavouriteCity",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What's your favourite city"
+        }
+      ]
+    },
+    {
+      "id": "Confirm.Intent-FavouriteIntent.IntentSlot-FavouriteCity",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Can you confirm that your favourite city is {FavouriteCity}"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-FavouriteIntent.IntentSlot-FavouriteRegion",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What's your favourite region"
+        }
+      ]
+    },
+    {
+      "id": "Confirm.Intent-FavouriteIntent.IntentSlot-FavouriteRegion",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Can you confirm that your favourite region is {FavouriteRegion}"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "version": "1.0",
+    "intents": [
+      {
+        "name": "FavouriteIntent",
+        "confirmationRequired": true,
+        "prompts": {
+          "confirm": "Confirm.Intent-FavouriteIntent"
+        },
+        "slots": [
+          {
+            "name": "FavouriteCity",
+            "type": "AMAZON.GB_CITY",
+            "elicitationRequired": true,
+            "confirmationRequired": true,
+            "prompts": {
+              "elicit": "Elicit.Intent-FavouriteIntent.IntentSlot-FavouriteCity",
+              "confirm": "Confirm.Intent-FavouriteIntent.IntentSlot-FavouriteCity"
+            }
+          },
+          {
+            "name": "FavouriteRegion",
+            "type": "AMAZON.GB_REGION",
+            "elicitationRequired": true,
+            "confirmationRequired": true,
+            "prompts": {
+              "elicit": "Elicit.Intent-FavouriteIntent.IntentSlot-FavouriteRegion",
+              "confirm": "Confirm.Intent-FavouriteIntent.IntentSlot-FavouriteRegion"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
