@@ -8,7 +8,7 @@ const shell = require('gulp-shell');
 
 const params = {
   FunctionName: 'FavouritePlaces',
-  Role: 'arn:aws:iam::{id}:role/lambda_dynamodb_execution',
+  Role: 'arn:aws:iam::{id}:role/favourite_places_role',
   Handler: 'index.handler',
   Runtime: 'nodejs4.3',
   Description: 'Demonstrates skill builder dialogue model.',
@@ -55,9 +55,9 @@ gulp.task('create', ['makeZip', 'lint'], function create() {
 });
 
 gulp.task('createRole', shell.task([
-  'aws iam create-role --role-name favourite_places_basic_execution --assume-role-policy-document file://automation/role-policy-document.json',
-  'aws iam put-role-policy --role-name favourite_places_basic_execution --policy-name basic_dynamo_db --policy-document file://automation/basic-execution-role.json',
-  'aws iam get-role --role-name favourite_places_basic_execution',
+  'aws iam create-role --role-name favourite_places_role --assume-role-policy-document file://automation/role-policy-document.json',
+  'aws iam put-role-policy --role-name favourite_places_role --policy-name logs_and_dynamodb --policy-document file://automation/logs_and_dynamodb_policy.json',
+  'aws iam get-role --role-name favourite_places_role',
 ]));
 
 gulp.task('configure', shell.task([
