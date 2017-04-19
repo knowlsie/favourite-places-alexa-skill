@@ -19,19 +19,19 @@
       ],
       "slots": [
         {
-          "name": "FavouriteCity",
+          "name": "FavouriteGBCity",
           "type": "AMAZON.GB_CITY",
           "samples": [
-            "{FavouriteCity} ",
-            "My favourite city is {FavouriteCity} ."
+            "{FavouriteGBCity} ",
+            "My favourite city is {FavouriteGBCity}."
           ]
         },
         {
-          "name": "FavouriteRegion",
-          "type": "AMAZON.GB_REGION",
+          "name": "FavouriteUSCity",
+          "type": "AMAZON.US_CITY",
           "samples": [
-            "My favourite region is {FavouriteRegion} .",
-            "{FavouriteRegion} ."
+            "My favourite city is {FavouriteUSCity}.",
+            "{FavouriteUSCity} ."
           ]
         }
       ]
@@ -45,51 +45,51 @@
       "variations": [
         {
           "type": "PlainText",
-          "value": "Can you confirm that your favourite city is {FavouriteCity} and your favourite region is {FavouriteRegion} ?"
+          "value": "Can you confirm that your favourite British city is {FavouriteGBCity} and your favourite American city is {FavouriteUSCity}?"
         }
       ]
     },
     {
-      "id": "Elicit.Intent-FavouriteIntent.IntentSlot-FavouriteCity",
+      "id": "Elicit.Intent-FavouriteIntent.IntentSlot-FavouriteGBCity",
       "promptVersion": "1.0",
       "definitionVersion": "1.0",
       "variations": [
         {
           "type": "PlainText",
-          "value": "What's your favourite city"
+          "value": "What's your favourite British city?"
         }
       ]
     },
     {
-      "id": "Confirm.Intent-FavouriteIntent.IntentSlot-FavouriteCity",
+      "id": "Confirm.Intent-FavouriteIntent.IntentSlot-FavouriteGBCity",
       "promptVersion": "1.0",
       "definitionVersion": "1.0",
       "variations": [
         {
           "type": "PlainText",
-          "value": "Can you confirm that your favourite city is {FavouriteCity}"
+          "value": "Can you confirm that your favourite British city is {FavouriteGBCity}?"
         }
       ]
     },
     {
-      "id": "Elicit.Intent-FavouriteIntent.IntentSlot-FavouriteRegion",
+      "id": "Elicit.Intent-FavouriteIntent.IntentSlot-FavouriteUSCity",
       "promptVersion": "1.0",
       "definitionVersion": "1.0",
       "variations": [
         {
           "type": "PlainText",
-          "value": "What's your favourite region"
+          "value": "What's your favourite American city?"
         }
       ]
     },
     {
-      "id": "Confirm.Intent-FavouriteIntent.IntentSlot-FavouriteRegion",
+      "id": "Confirm.Intent-FavouriteIntent.IntentSlot-FavouriteUSCity",
       "promptVersion": "1.0",
       "definitionVersion": "1.0",
       "variations": [
         {
           "type": "PlainText",
-          "value": "Can you confirm that your favourite region is {FavouriteRegion}"
+          "value": "Can you confirm that your favourite American City is {FavouriteUSCity}?"
         }
       ]
     }
@@ -105,23 +105,23 @@
         },
         "slots": [
           {
-            "name": "FavouriteCity",
+            "name": "FavouriteGBCity",
             "type": "AMAZON.GB_CITY",
             "elicitationRequired": true,
             "confirmationRequired": true,
             "prompts": {
-              "elicit": "Elicit.Intent-FavouriteIntent.IntentSlot-FavouriteCity",
-              "confirm": "Confirm.Intent-FavouriteIntent.IntentSlot-FavouriteCity"
+              "elicit": "Elicit.Intent-FavouriteIntent.IntentSlot-FavouriteGBCity",
+              "confirm": "Confirm.Intent-FavouriteIntent.IntentSlot-FavouriteGBCity"
             }
           },
           {
-            "name": "FavouriteRegion",
-            "type": "AMAZON.GB_REGION",
+            "name": "FavouriteUSCity",
+            "type": "AMAZON.US_CITY",
             "elicitationRequired": true,
             "confirmationRequired": true,
             "prompts": {
-              "elicit": "Elicit.Intent-FavouriteIntent.IntentSlot-FavouriteRegion",
-              "confirm": "Confirm.Intent-FavouriteIntent.IntentSlot-FavouriteRegion"
+              "elicit": "Elicit.Intent-FavouriteIntent.IntentSlot-FavouriteUSCity",
+              "confirm": "Confirm.Intent-FavouriteIntent.IntentSlot-FavouriteUSCity"
             }
           }
         ]

@@ -3,26 +3,48 @@
 const Alexa = require('alexa-sdk');
 
 const sessionHandlers = {
+  // Tells you favourite places, gives option to update
   LaunchRequest() {
-    let output;
-    if (this.attributes.favouriteCity && this.attributes.favouriteRegion) {
-      output = `Last time you told me your favourite British city was ${this.attributes.favouriteCity} and your favourite British region was ${this.attributes.favouriteRegion}.`;
+    let outputSpeech;
+    if (this.attributes.favouriteGBCity && this.attributes.favouriteUSCity) {
+      outputSpeech = `Last time you told me your favourite British city was ${this.attributes.favouriteGBCity} and your favourite American city was ${this.attributes.favouriteUSCity}. Say 'update my favourite places to change this.'`;
     } else {
-      output = `I don't yet have your favourite British city or region. Say update my favourite places to start.`;
+      outputSpeech = `I haven't yet been told your favourite places. Say update my favourite places to start.`;
     }
-    this.emit(':ask', output);
+    this.emit(':ask', outputSpeech);
   },
+  // Used to update favourite places
   FavouriteIntent() {
+    // Update cities using only delegate directive.
     if (this.event.request.dialogState !== 'COMPLETED') {
       this.emit(':delegate');
     } else {
-      this.attributes.favouriteCity = this.event.request.intent.slots.FavouriteCity.value;
-      this.attributes.favouriteRegion = this.event.request.intent.slots.FavouriteRegion.value;
-      this.emit(':tell', `I've recorded in my database that your favourite British city is ${this.attributes.favouriteCity} and your favourite British region is ${this.attributes.favouriteRegion}.`);
+      this.attributes.favouriteGBCity = this.event.request.intent.slots.FavouriteGBCity.value;
+      this.attributes.favouriteUSCity = this.event.request.intent.slots.FavouriteUSCity.value;
+      this.emit(':tell', `I've recorded in my database that your favourite British city is ${this.attributes.FavouriteGBCity} and your favourite American city is ${this.attributes.FavouriteUSCity}.`);
     }
+
+    // Update cities using elicitSlot, confirmSlot, and confirmIntent
+    /*
+    if (!this.event.request.intent.slots.FavouriteUSCity.value) {
+      this.emit(':elicitSlot', 'FavouriteUSCity', 'So what is your favourite American city?', 'So what is your favourite American city?');
+    } else if (this.event.request.intent.slots.FavouriteUSCity.confirmationStatus !== 'CONFIRMED') {
+      this.emit(':confirmSlot', 'FavouriteUSCity', `So can you confirm your favourite American city is ${this.event.request.intent.slots.FavouriteUSCity.value}`, `So can you confirm your favourite American city is ${this.event.request.intent.slots.FavouriteUSCity.value}`);
+    } else if (!this.event.request.intent.slots.FavouriteGBCity.value) {
+      this.emit(':elicitSlot', 'FavouriteGBCity', 'So what is your favourite British city?', 'So what is your favourite British city?');
+    } else if (this.event.request.intent.slots.FavouriteGBCity.confirmationStatus !== 'CONFIRMED') {
+      this.emit(':confirmSlot', 'FavouriteGBCity', `So can you confirm your favourite British city is ${this.event.request.intent.slots.FavouriteGBCity.value}`, `So can you confirm your favourite British city is ${this.event.request.intent.slots.FavouriteGBCity.value}`);
+    } else if (this.event.request.intent.confirmationStatus !== 'CONFIRMED') {
+      this.emit(':confirmIntent', `So can you confirm that your favourite American city is ${this.event.request.intent.slots.FavouriteUSCity.value} and your favourite British city is ${this.event.request.intent.slots.FavouriteGBCity.value}.`, `So can you confirm that your favourite American city is ${this.event.request.intent.slots.FavouriteUSCity.value} and your favourite British city is ${this.event.request.intent.slots.FavouriteGBCity.value}.`)
+    } else {
+      this.attributes.favouriteGBCity = this.event.request.intent.slots.FavouriteGBCity.value;
+      this.attributes.favouriteUSCity = this.event.request.intent.slots.FavouriteUSCity.value;
+      this.emit(':tell', `I've recorded in my database that your favourite British city is ${this.attributes.favouriteGBCity} and your favourite American city is ${this.attributes.favouriteUSCity}.`);
+    }
+    */
   },
   'AMAZON.HelpIntent': function HelpIntent() {
-    this.emit(':ask', 'Tell me about your favourite city and region!');
+    this.emit(':ask', 'Say update my favourite places to change your favourite places', 'Say update my favourite places to change your favourite places');
   },
   'AMAZON.CancelIntent': function CancelIntent() {
     this.emit(':tell', 'Goodbye!');
@@ -31,7 +53,7 @@ const sessionHandlers = {
     this.emit(':tell', 'Goodbye!');
   },
   Unhandled() {
-    this.emit(':tell', 'There was an error.');
+    this.emit(':tell', 'If this has been called, I think something has gone wrong...');
   },
 };
 

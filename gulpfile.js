@@ -56,7 +56,7 @@ gulp.task('create', ['makeZip', 'lint'], function create() {
 
 gulp.task('createRole', shell.task([
   'aws iam create-role --role-name favourite_places_basic_execution --assume-role-policy-document file://automation/role-policy-document.json',
-  'aws iam put-role-policy --role-name favourite_places_basic_execution --policy-name lambda_basic_execution --policy-document file://automation/basic-execution-role.json',
+  'aws iam put-role-policy --role-name favourite_places_basic_execution --policy-name basic_dynamo_db --policy-document file://automation/basic-execution-role.json',
   'aws iam get-role --role-name favourite_places_basic_execution',
 ]));
 
