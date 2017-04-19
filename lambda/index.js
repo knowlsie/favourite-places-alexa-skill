@@ -19,8 +19,8 @@ const sessionHandlers = {
     if (this.event.request.dialogState !== 'COMPLETED') {
       this.emit(':delegate');
     } else {
-      this.attributes.favouriteGBCity = this.event.request.intent.slots.favouriteGBCity.value;
-      this.attributes.favouriteUSCity = this.event.request.intent.slots.favouriteUSCity.value;
+      this.attributes.favouriteGBCity = this.event.request.intent.slots.FavouriteGBCity.value;
+      this.attributes.favouriteUSCity = this.event.request.intent.slots.FavouriteUSCity.value;
       this.emit(':tell', `I've recorded in my database that your favourite British city is ${this.attributes.favouriteGBCity} and your favourite American city is ${this.attributes.favouriteUSCity}.`);
     }
 
