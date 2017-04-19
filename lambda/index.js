@@ -39,6 +39,7 @@ const sessionHandlers = {
 exports.handler = (event, context, callback) => {
   const alexa = Alexa.handler(event, context, callback); // See alexa.js in alexa-sdk package.
   alexa.dynamoDBTableName = 'FavouritePlaces';
+  // TODO: Add App ID.
   alexa.registerHandlers(sessionHandlers); // See response.js in alexa-sdk package to see other registered handlers.
   alexa.execute(); // Handles lambda event.
 };
