@@ -8,7 +8,7 @@ const sessionHandlers = {
     if (this.attributes.favouriteCity && this.attributes.favouriteRegion) {
       output = `Last time you told me your favourite British city was ${this.attributes.favouriteCity} and your favourite British region was ${this.attributes.favouriteRegion}.`;
     } else {
-      output = `I don't yet have your favourite city or region. Say update my favourite places to start.`;
+      output = `I don't yet have your favourite British city or region. Say update my favourite places to start.`;
     }
     this.emit(':ask', output);
   },
@@ -18,7 +18,7 @@ const sessionHandlers = {
     } else {
       this.attributes.favouriteCity = this.event.request.intent.slots.FavouriteCity.value;
       this.attributes.favouriteRegion = this.event.request.intent.slots.FavouriteRegion.value;
-      this.emit(':tell', `I've recorded in my database that your favourite city is ${this.attributes.favouriteCity} and your favourite region is ${this.attributes.favouriteRegion}.`);
+      this.emit(':tell', `I've recorded in my database that your favourite British city is ${this.attributes.favouriteCity} and your favourite British region is ${this.attributes.favouriteRegion}.`);
     }
   },
   'AMAZON.HelpIntent': function HelpIntent() {
