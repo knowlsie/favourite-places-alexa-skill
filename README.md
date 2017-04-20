@@ -35,4 +35,4 @@ The code includes solutions using both `delegate`, and the `:elicitSlot`/ `:conf
 
 If you ever want to update the lambda with your local changes, you can run `gulp` to do this.
 
-See [alexa-sdk](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs) and [my other, better Alexa skill](https://github.com/alan-turing-institute/alexa-room-booker) for more actual documentation.
+See [alexa-sdk](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs) and [my other, better Alexa skill](https://github.com/alan-turing-institute/alexa-room-finder) for more actual documentation.
